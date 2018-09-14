@@ -211,27 +211,43 @@ var multiply = function(x, y) {
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
+var count = 0;
 var divide = function(x, y) {
   if (y === 0) {
     return NaN;
-  } else {
+  } else if (x >= 0 && y > 0) {
+    if (x - y < 0) {
+      return count;
+    } else {
+      x -= y;
+      count++;
+      return divide(x, y);
+    }
+  } else if (x >= 0 && y < 0) {
+    if (x + y < 0) {
+      return count;
+    } else {
+      x += y;
+      count--;
+      return divide(x, y);
+    }
+  } else if (x < 0 && y > 0) {
+    if (x + y > 0) {
+      return count;
+    } else {
+      x += y;
+      count--;
+      return divide(x, y);
+    }
+  } else if (x < 0 && y < 0) {
+    if (x - y > 0) {
+      return count;
+    } else {
+      x -= y;
+      count++;
+      return divide(x, y);
+    }
   }
-  // else if (x >= 0 && y > 0) {
-  //   x -= y;
-  //   return divide(x, y);
-  // } else if (x >= 0 && y < 0) {
-  //   x += y;
-  //   return divide(x, y);
-  // } else if (x < 0 && y > 0) {
-  //   x += y;
-  //   return divide(x, y);
-  // } else if (x < 0 && y < 0) {
-  //   x =- y;
-  //   return divide(x, y);
-  // } else if (x <= 0) {
-  //   return x;
-  // }
-
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
@@ -240,6 +256,7 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
+
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
@@ -256,6 +273,7 @@ var createArray = function(str) {
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
+
 };
 
 // 18. Create a new array with a given value and length.
@@ -316,6 +334,9 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function(n) {
+  if (n === 0) {
+    return 1;
+  }
 };
 
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.
